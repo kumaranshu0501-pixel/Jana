@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>For My Jana ❤️</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(135deg, #ff9a9e, #fad0c4);
+      color: #333;
+      text-align: center;
+    }
+    .page {
+      display: none;
+      min-height: 100vh;
+      padding: 40px 20px;
+    }
+    .page.active { display: block; }
+    h1 { color: #b30059; font-size: 3rem; }
+    h2 { color: #800040; }
+    .card {
+      background: white;
+      border-radius: 20px;
+      padding: 30px;
+      margin: 30px auto;
+      max-width: 800px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+    }
+    button {
+      background: #ff4d88;
+      border: none;
+      padding: 15px 30px;
+      font-size: 1.2rem;
+      border-radius: 30px;
+      color: white;
+      cursor: pointer;
+      margin-top: 20px;
+      box-shadow: 0 0 15px rgba(255,77,136,0.6);
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    button:hover {
+      transform: scale(1.08);
+      box-shadow: 0 0 30px rgba(255,77,136,0.9);
+    }
+    button:hover { background: #e6005c; }
+    footer { margin-top: 40px; font-size: 0.9rem; color: #4d0026; }
+    canvas { position: fixed; top: 0; left: 0; pointer-events: none; }
+    @keyframes floatUp {
+      from { transform: translateY(0) scale(1); opacity: 1; }
+      to { transform: translateY(-600px) scale(1.4); opacity: 0; }
+    }
+
+    @keyframes sparkle {
+      from { opacity: 1; transform: scale(1); }
+      to { opacity: 0; transform: scale(2); }
+    }
+
+    @keyframes softFloat {
+      from { transform: translateY(0); opacity: 0.9; }
+      to { transform: translateY(-300px); opacity: 0; }
+    }
+
+    .glow {
+      text-shadow: 0 0 10px rgba(255,105,180,0.6),
+                   0 0 20px rgba(255,105,180,0.4);
+    }
+
+    .hidden-love {
+      opacity: 0;
+      transition: opacity 2s ease;
+      font-size: 1.2rem;
+      margin-top: 20px;
+      color: #b30059;
+    }
+
+    .reveal:hover .hidden-love {
+      opacity: 1;
+    }
+      to { opacity: 0; transform: scale(2); }
+    }
+      to { transform: translateY(-600px); opacity: 0; }
+    }
+  </style>
+</head>
+<body>
+
+<audio id="bgMusic" loop preload="auto">
+  <source src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_4b6c7e3f2c.mp3?filename=romantic-piano-soft-10997.mp3" type="audio/mpeg">
+</audio>
+<button id="playMusicBtn" style="position:fixed;bottom:20px;right:20px;z-index:999;">🎵 Play Music</button>
+
+<div id="page1" class="page active">
+  <h1>Hey Meri Jana ❤️</h1>
+  <div class="card">😚
+    <p>Baccha ye sirf apke liye h Jana</p>
+    <p>Button dabaiye baccha 🤭</p>
+    <button onclick="nextPage(2)">Chaliye aage chalte h baccha  ➡️</button>
+  </div>
+</div>
+
+<div id="page2" class="page">
+  <h2>Thoda sa sataana allowed hai Hai n baccha 😌</h2>
+  <div class="card">
+    <p>Jana, apko mai khub sataunga khub sara 😅</p>
+    <p>Phir sata kr pyar bhi krunga baccha ❤️</p>
+    <button onclick="nextPage(3)">Aur sunau baccha 😏</button>
+  </div>
+</div>
+
+<div id="page3" class="page">
+  <h2>Serious mode (thoda sa) 🥹</h2>
+  <div class="card">
+    <p>Tum meri Jaan ban gye ho mera buddhu baccha…</p>
+    <p>Jaise chai bina cheeni ke adhuri hoti hai ☕❤️</p>
+    <button onclick="nextPage(4)">Dil wali baat ➡️</button>
+  </div>
+</div>
+
+<div id="page4" class="page">
+  <h2>Promise time 🤝</h2>
+  <div class="card">
+    <p>Hasana bhi, manana bhi, dher sari kissi bhi aur apko khub sara satana bhi 😄</p>
+    <p>Apko sataunga aur firr khub sara pyar krunga Jana, Aap bs mere sath rehna mera baccha humesha humesha k liye Jana 💕</p>
+    <button onclick="nextPage(5)">Last page 😍</button>
+  </div>
+</div>
+
+<div id="page5" class="page">
+  <h1>Final Question 💍</h1>
+  <div class="card">
+    <p>Jana… bs itta puchna h baccha 😌</p>
+    <p>Will you Will you ❤️</p>
+    <h2>Will You Marry Me Jana. Ky Baccha aap meri baccho ki Mumma ban na chahoge Jana 💍💕</h2>
+    <p>Warning: YES bolte hi lifetime pyaar activate 😄</p>
+    <div style="margin-top:20px;">
+      <button onclick="sayYes()">YES 💖</button>
+      <button id="noBtn" style="background:#ccc;color:#333;margin-left:10px;">NO 🙈</button>
+    </div>
+    <div id="yesMsg" style="display:none; margin-top:25px;">
+      <h2>Yayyyy!! 🥹❤️</h2>
+      <p>Jana ne YES bol diya 💍✨</p>
+      <p>Ab toh zindagi bhar ka saath pakka 😄💕</p>
+      <button onclick="nextPage(6)">Aage kya hai? 👀✨</button>
+    </div>
+  </div>
+</div>
+
+<div id="page6" class="page">
+  <h1>Forever Starts Now ♾️❤️</h1>
+  <div class="card">
+    <p>Jana… yeh sirf proposal nahi tha 🥹</p>
+    <p>Yeh promise hai — har din tumhe choose karne ka 💕</p>
+    <p>Hasna, ladna, manana, ghoomna ✨</p>
+    <p>Sab kuch tumhare saath ❤️</p>
+    <h2>Will you be my forever Jana? 💍</h2>
+    <p style="font-size:1.3rem;">(Answer already YES hai 😌❤️)</p>
+  </div>
+  <footer>Our love story starts here 💖</footer>
+
+<div class="card glow reveal" style="margin-top:30px; background:linear-gradient(135deg,#ffe6f0,#fff);">
+  <h2 class="glow">Ek last baat… 🥹❤️</h2>
+  <p style="font-size:1.3rem; line-height:1.8;">
+    I love you so so so so so much ❤️<br>
+    mera pyara sa baccha 😘<br><br>
+    Aap meri 🌍💫<br>
+    Jigar ka tukda ho Jaan 💕
+  </p>
+  <div class="hidden-love">(sirf tumhare liye ❤️ — main aapse apne har janam pyaar karunga mera baccha 🥹♾️)</div>
+</div>
+
+<footer style="margin-top:40px;">Made with infinite love ❤️</footer>
+</div>
+
+<script>
+  function nextPage(n) {
+    var pages = document.querySelectorAll('.page');
+    for (var i = 0; i < pages.length; i++) {
+      pages[i].classList.remove('active');
+    }
+    var next = document.getElementById('page' + n);
+    if (next) next.classList.add('active');
+  }
+
+  function sayYes() {
+    var msg = document.getElementById('yesMsg');
+    if (msg) msg.style.display = 'block';
+    for (var i = 0; i < 25; i++) createHeart();
+    launchFireworks();
+
+    // force play music on user interaction
+    if (music) {
+      music.volume = 0.4;
+      var playPromise = music.play();
+      if (playPromise !== undefined) {
+        playPromise.catch(function(){ /* autoplay blocked silently */ });
+      }
+    }
+  }
+
+  var music = document.getElementById('bgMusic');
+  var playBtn = document.getElementById('playMusicBtn');
+  if (playBtn) {
+    playBtn.onclick = function () {
+      music.volume = 0.4;
+      music.play();
+      playBtn.style.display = 'none';
+    };
+  }
+
+  function launchFireworks() {
+    for (var b = 0; b < 5; b++) {
+      setTimeout(singleBurst, b * 500);
+    }
+  }
+
+  function singleBurst() {
+    var canvas = document.createElement('canvas');
+    document.body.appendChild(canvas);
+    canvas.style.position = 'fixed';
+    canvas.style.top = 0;
+    canvas.style.left = 0;
+    canvas.style.pointerEvents = 'none';
+    var ctx = canvas.getContext('2d');
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+
+    var particles = [];
+    var cx = Math.random() * canvas.width;
+    var cy = Math.random() * canvas.height / 2;
+
+    for (var i = 0; i < 80; i++) {
+      particles.push({
+        x: cx,
+        y: cy,
+        vx: (Math.random() - 0.5) * 8,
+        vy: (Math.random() - 0.5) * 8,
+        life: 60,
+        color: 'hsl(' + Math.random() * 360 + ',100%,70%)'
+      });
+    }
+
+    function animate() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      for (var i = 0; i < particles.length; i++) {
+        var p = particles[i];
+        ctx.fillStyle = p.color;
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, 3, 0, Math.PI * 2);
+        ctx.fill();
+        p.x += p.vx;
+        p.y += p.vy;
+        p.life--;
+      }
+      if (particles.some(function (p) { return p.life > 0; })) {
+        requestAnimationFrame(animate);
+      } else {
+        canvas.remove();
+      }
+    }
+    animate();
+  }
+
+  var noBtn = document.getElementById('noBtn');
+  if (noBtn) {
+    noBtn.onmouseover = function () {
+      noBtn.style.position = 'absolute';
+      noBtn.style.left = Math.random() * (window.innerWidth - 120) + 'px';
+      noBtn.style.top = Math.random() * (window.innerHeight - 60) + 'px';
+    };
+  }
+
+  function createHeart() {
+    var heart = document.createElement('div');
+    heart.innerHTML = '❤️';
+    heart.style.position = 'fixed';
+    heart.style.left = Math.random() * window.innerWidth + 'px';
+    heart.style.top = window.innerHeight + 'px';
+    heart.style.fontSize = '26px';
+    heart.style.animation = 'floatUp 3s linear';
+    heart.style.pointerEvents = 'none';
+    document.body.appendChild(heart);
+    setTimeout(function () { heart.remove(); }, 3000);
+  }
+
+  document.addEventListener('click', function (e) {
+    for (var i = 0; i < 6; i++) {
+      var s = document.createElement('div');
+      s.innerHTML = '✨';
+      s.style.position = 'fixed';
+      s.style.left = e.clientX + 'px';
+      s.style.top = e.clientY + 'px';
+      s.style.fontSize = '14px';
+      s.style.pointerEvents = 'none';
+      s.style.animation = 'sparkle 1s ease-out';
+      document.body.appendChild(s);
+      setTimeout(function (el) { return function () { el.remove(); }; }(s), 1000);
+    }
+  });
+</script>
+
+</body>
+</html>
